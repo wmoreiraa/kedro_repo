@@ -36,7 +36,7 @@ from kedro.pipeline import Pipeline
 from kedro.versioning import Journal
 
 from kedro_space.pipelines.data_processing import pipeline as dp
-
+from kedro_space.pipelines.data_science import pipeline as ds
 
 class ProjectHooks:
     @hook_impl
@@ -48,10 +48,12 @@ class ProjectHooks:
 
         """
         dp_pipeline = dp.create_pipeline()
+        ds_pipeline = ds.create_pipeline()
 
         return {
                 'dp': dp_pipeline,
-                "__default__": dp_pipeline,
+                'ds': ds_pipeline,
+                "__default__": dp_pipeline + ds_pipeline,
         }
 
 
