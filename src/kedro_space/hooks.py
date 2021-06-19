@@ -38,6 +38,7 @@ from kedro.versioning import Journal
 from kedro_space.pipelines.data_processing import pipeline as dp
 from kedro_space.pipelines.data_science import pipeline as ds
 
+
 class ProjectHooks:
     @hook_impl
     def register_pipelines(self) -> Dict[str, Pipeline]:
@@ -51,11 +52,10 @@ class ProjectHooks:
         ds_pipeline = ds.create_pipeline()
 
         return {
-                'dp': dp_pipeline,
-                'ds': ds_pipeline,
-                "__default__": dp_pipeline + ds_pipeline,
+            "dp": dp_pipeline,
+            "ds": ds_pipeline,
+            "__default__": dp_pipeline + ds_pipeline,
         }
-
 
     @hook_impl
     def register_config_loader(self, conf_paths: Iterable[str]) -> ConfigLoader:
@@ -73,5 +73,6 @@ class ProjectHooks:
         return DataCatalog.from_config(
             catalog, credentials, load_versions, save_version, journal
         )
+
 
 project_hooks = ProjectHooks()

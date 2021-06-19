@@ -65,4 +65,3 @@ def evaluate_model(regressor: LinearRegression, X_test: np.ndarray, y_test: np.n
     score = r2_score(y_test, y_pred)
     logger = logging.getLogger(__name__)
     logger.info("Model has a coefficient R^2 of %.3f.", score)
-
